@@ -11,8 +11,8 @@ function FormExample () {
   const [data, setData] = useState([{pdbID: "", redox_mv: ""}]);
   const [searchInput, setSearchInput] = useState('');
 
-  useEffect(() => {
-    console.log("useEffect called");
+  // useEffect(() => {
+    // console.log("useEffect called");
 
     async function retrieveFirestore() {
       console.log("retrieveFirestore called");
@@ -29,14 +29,16 @@ function FormExample () {
         console.log(avengers);
       setData(avengers);
     }
-    retrieveFirestore();
-  }, [searchInput]);
+    // retrieveFirestore();
+  // }, [searchInput]);
 
   const handleSubmit = (event) => {
     console.log("form submitted");
 
     event.preventDefault();
     setSearchInput(event.target.searchInput.value);
+    retrieveFirestore(searchInput);
+
   }
 
   return (
