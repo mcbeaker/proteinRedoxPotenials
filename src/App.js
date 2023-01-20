@@ -17,7 +17,7 @@ function FormExample () {
     async function retrieveFirestore() {
       console.log("retrieveFirestore called");
 
-      const gotDocs = await getDocs(initDocs);
+      const gotDocs = await getDocs(initDocs());
       if (gotDocs.empty) {
         console.log('No matching documents.');
         return;
