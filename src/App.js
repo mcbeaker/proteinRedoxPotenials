@@ -7,38 +7,12 @@ import {initFirebase} from './initFirebase'
 import MaterialTable from 'material-table';
 import { getDocs } from 'firebase/firestore';
 
-function FormExample () {
-  const [data, setData] = useState([{pdbID: "", redox_mv: ""}]);
-  const [searchInput, setSearchInput] = useState('');
-
-  // useEffect(() => {
-    // console.log("useEffect called");
-
-    async function retrieveFirestore() {
-      console.log("retrieveFirestore called");
-
-      const gotDocs = await getDocs(initFirebase());
-      if (gotDocs.empty) {
-        console.log('No matching documents.');
-        return;
-      }
-      const allData = [];
-      gotDocs.forEach(doc =>
-        allData.push(doc.data()))
-      const avengers = allData.filter(allData => allData.pdbID === searchInput);
-        console.log(avengers);
-      setData(avengers);
-    }
-    // retrieveFirestore();
-  // }, [searchInput]);
+function FormExample ({searchInput, setSearchInput, retrieveFirestore}) {
 
   const handleSubmit = (event) => {
-    console.log("form submitted");
-
     event.preventDefault();
     setSearchInput(event.target.searchInput.value);
     retrieveFirestore(searchInput);
-
   }
 
   return (
@@ -71,10 +45,36 @@ function FormExample () {
 }
 
 function App(){
+  
+  const [searchInput, setSearchInput] = useState('');
+  function FormExample ({searchInput, setSearchInput, retrieveFirestore}) {
+    const [data, setData] = useState([]);
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      setSearchInput(event.target.searchInput.value);
+      retrieveFirestore(searchInput);
+    }
+  
+  async function retrieveFirestore(searchInput) {
+    console.log("retrieveFirestore called");
+
+      const gotDocs = await getDocs(initFirebase());
+      if (gotDocs.empty) {
+        console.log('No matching documents.');
+        return;
+      }
+      const allData = [];
+      gotDocs.forEach(doc =>
+        allData.push(doc.data()))
+      const avengers = allData.filter(allData => allData.pdbID === searchInput);
+        console.log(avengers);
+      setData(avengers);
+    }
+
   return (
     <div>
-      {console.log('component rendered')}
-      <FormExample />
+    <FormExample searchInput={searchInput} setSearchInput={setSearchInput} retrieveFirestore={retrieveFirestore} />
     </div>
   );
 }
