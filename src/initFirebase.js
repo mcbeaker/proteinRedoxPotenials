@@ -18,4 +18,6 @@ export function initFirebase(){
       const initDocs = collection(db,'redox');
       return initDocs;
     }
+      
+
 
