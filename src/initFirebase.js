@@ -1,7 +1,7 @@
 import {initializeApp} from 'firebase/app';
 import {getFirestore, collection} from 'firebase/firestore';
 
-function initFirebase(){
+export function initFirebase(){
     const app = initializeApp({
         apiKey: "AIzaSyDC-iI7vlaEb4BVmZ9zxRbQ7z-HjGmw87w",
         authDomain: "protein-redox-potential.firebaseapp.com",
@@ -17,5 +17,5 @@ function initFirebase(){
       const db = getFirestore(app);
       const initDocs = collection(db,'redox');
       return initDocs;
-}
-export initFirebase;
+    }
+
