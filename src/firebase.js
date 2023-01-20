@@ -20,8 +20,7 @@ const firebaseConfig = {
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   // Reference to your Firestore database
-  const db = getFirestore(app);
-  export const docs = collection(db,'redox');
-//   console.log(db);
+  export default getFirestore();
+  
 
   
