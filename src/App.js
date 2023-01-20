@@ -3,7 +3,7 @@ import './App.css';
 // import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import { useState, useEffect } from 'react';
-import {initFirebase} from './initFirebase'
+import {initDocs} from './initFirebase'
 import MaterialTable from 'material-table';
 import { getDocs } from 'firebase/firestore';
 
@@ -59,7 +59,7 @@ function App(){
   async function retrieveFirestore(searchInput) {
     console.log("retrieveFirestore called");
 
-      const gotDocs = await getDocs(initFirebase());
+      const gotDocs = await getDocs(initDocs);
       if (gotDocs.empty) {
         console.log('No matching documents.');
         return;
