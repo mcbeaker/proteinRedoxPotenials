@@ -18,7 +18,8 @@ const SearchBar = ({ onSubmit }) => {
         setSearchTerm(inputValue);
         console.log(inputValue);
 
-        const q = query(collection(db, 'redox'),where('pdbID', '==', inputValue));
+        // const q = query(collection(db, 'redox'),where('pdbID', '==', inputValue));
+        const q = query(collection(db, 'redox'));
         // const qu = await getDocs(q) //..get();
         // console.log(query.docs);
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
