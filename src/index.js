@@ -49,9 +49,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ReactReduxFirebaseProvider {...rrfProps}>
+      {/* <ReactReduxFirebaseProvider {...rrfProps}> */}
         <App /> 
-      </ReactReduxFirebaseProvider>
+      {/* </ReactReduxFirebaseProvider> */}
     </Provider>
   </React.StrictMode>
 );
