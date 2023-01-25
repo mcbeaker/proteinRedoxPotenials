@@ -56,6 +56,12 @@ export default function ReturnResults() {
             filtering: true,
             sorting: true,
             paginationType: 'stepped',
+            exportButton: {
+                csv: true,
+                pdf: false,
+             },
+             exportCsv: (data, columns) => console.log(data, columns, '<== CSV'),
+             exportPdf: (data, columns) => console.log(data, columns, '<== PDF'),
           }}
           />
           </ThemeProvider>
