@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import { render } from "react-dom";
 import { connect, Provider } from "react-redux";
@@ -105,5 +106,19 @@ function App() {
     </Provider>
   );
 }
+=======
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+>>>>>>> parent of 2bb2814 (update using redux-react-firebase)
 
 render(<App />, document.getElementById("root"));

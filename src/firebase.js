@@ -1,14 +1,19 @@
  // Import the functions you need from the SDKs you need
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { initializeApp } from 'firebase/compat/app';
 import { getFirestore } from 'firebase/compat/firestore'
+=======
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore'
+>>>>>>> parent of 2bb2814 (update using redux-react-firebase)
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import firebase from 'firebase/app'
-import 'firebase/compat/auth'
-import 'firebase/compat/firestore' // <- needed if using firestore
+import 'firebase/auth'
+import 'firebase/firestore' // <- needed if using firestore
 import { combineReducers, compose } from 'redux'
 import { configureStore } from '@reduxjs/toolkit';
 import {

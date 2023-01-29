@@ -1,18 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 // import React from 'react';
+=======
+import React from 'react';
+>>>>>>> parent of 2bb2814 (update using redux-react-firebase)
 import './App.css';
 // import * as firebase from 'firebase/app';
-
-// import 'firebase/firestore'; // SIDE EFFECT PACKAGES
-import Navbar from "./components/navigationBar";
-import Section from './components/section';
-
-
-// import ResultsTable from './resultTable';
-// import ReturnResults from './pullFirestoreData';
-// import MaterialTable from 'material-table';
-// import { initializeApp } from 'firebase/app';
+import 'firebase/firestore';
 import Logo from './logo';
+<<<<<<< HEAD
 // import ReturnResult from './toolbar';
 // import { initializeApp } from 'firebase/compat/app';
 import { getFirestore } from 'firebase/compat/firestore';
@@ -130,8 +126,14 @@ export default App;
 
 // }
 
+=======
+import ResultsTable from './resultTable';
+import ReturnResults from './pullFirestoreData';
+// import MaterialTable from 'material-table';
+>>>>>>> parent of 2bb2814 (update using redux-react-firebase)
 
 
+class App extends React.Component {
   // state = {
   //   data: [{}],
   //   dataRetrieved: false
@@ -147,3 +149,22 @@ export default App;
 
 
 // function App(){
+ 
+  render(){
+    return (
+        <div className="App">
+        <header className='App-header'>
+          <div><Logo /> </div>
+          <div> <ReturnResults /></div>
+        
+        </header>
+      </div>
+    );
+  
+}
+
+}
+export default App;
+
+
+
