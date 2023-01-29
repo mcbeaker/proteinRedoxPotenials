@@ -1,15 +1,12 @@
-import logo from './logo.svg';
 import React from 'react';
-import './App.css';
 
-
-const Logo = () => {
-    console.log("loaded Logo");
-    // console.log(src);
+const Logo = ({ src, alt }) => {
   return (
+    <header className='App-header'>
         <a href='index.html'>
-          <img src={logo} className='App-logo' alt="ProtRedox logo" />
+          <img src={src} alt={alt} />
         </a>
+    </header>
   );
 }
 

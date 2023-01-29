@@ -1,5 +1,6 @@
  // Import the functions you need from the SDKs you need
 
+<<<<<<< HEAD
 import { initializeApp } from 'firebase/compat/app';
 import { getFirestore } from 'firebase/compat/firestore'
 import React from 'react'
@@ -17,6 +18,10 @@ import {
 import { createFirestoreInstance, firestoreReducer } from 'redux-firestore' // <- needed if using firestore
 
 
+=======
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection } from 'firebase/firestore'
+>>>>>>> parent of dd10870 (a functional website)
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries

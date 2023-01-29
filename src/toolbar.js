@@ -21,7 +21,9 @@ import { Dashboard } from '@material-ui/icons';
 // }
 
 class DataTable extends Component{
+    
   render(){
+    console.log("DataTable");
     const columns = 
                 [{field: 'id', headerName:'ID'},
                     {field: 'enzyme_name', headerName:"Enzyme Name"},

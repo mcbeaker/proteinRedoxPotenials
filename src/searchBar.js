@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import db from './firebase';
-import { collection, doc, onSnapshot, query, where, getDocs} from 'firebase/firestore';
-import { render } from '@testing-library/react';
+import db from './firebase'
+import { collection, onSnapshot } from 'firebase/firestore';
 
-const SearchBar = ({ onSubmit }) => {
-  console.log("loaded searchBar");
+
+
+export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
-  const [unsub, setUnsub] = useState(null);
 
   const handleSubmit = async (event) => {
-        event.preventDefault();
-        console.log(event.target.searchInput.value);
-        const inputValue = event.target.searchInput.value;
-    // if(inputValue){
-        setSearchTerm(inputValue);
-        console.log(inputValue);
+    event.preventDefault();
+    // make API call to retrieve search results using searchTerm
+    onSnapshot(collection(db,'redox'), (snapshot) => 
+        setSearchResults(snapshot.docs.map((doc) => doc.data()))
+        )
+    setShowResults(true);
+  };
 
+<<<<<<< HEAD
         // const q = query(collection(db, 'redox'),where('pdbID', '==', inputValue));
         const q = query(collection(db, 'redox'));
         // const qu = await getDocs(q) //..get();
@@ -45,105 +46,15 @@ const SearchBar = ({ onSubmit }) => {
   }, [unsub]);
 
     return (
+=======
+  return (
+>>>>>>> parent of dd10870 (a functional website)
     <div className="App-form">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="search-input"></label>
-        <input type="text" id="search-input" name="searchInput" />
-        <button type="submit">Search</button>
-      </form>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="search-input"></label>
+            <input type="text" id="search-input" name="searchInput"/>
+            <button type="submit">Search</button>
+          </form> 
     </div>
   );
-  
-};
-
-
-export default SearchBar;
-
-
-
-
-
-
-// import {React, useState, useEffect } from 'react';
-// import db from './firebase'
-// import { collection, doc, onSnapshot, query, where } from 'firebase/firestore';
-
-
-// class SearchBar extends React.Component {
-//     const handleSubmit = async (event) => {
-//         event.preventDefault();
-//         setSearchTerm(event.target.searchInput.value);
-    
-//         const q = query(collection(db,'redox'), where('pdbID', '==', searchTerm));
-//         console.log(q);
-//         const unsub = onSnapshot(q,(querySnapshot) => {
-//                 console.log("Data", querySnapshot.docs.map(doc=>doc.data()));
-//                 if (querySnapshot.empty){
-//                     console.log('Error getting document');
-//                 }
-//                 else{
-//                     const data = querySnapshot.docs.map(doc => doc.data());
-//                     setSearchResults(data);
-//                     setShowResults(true);
-//                     // call the callback function to pass the data to the parent component
-//                     onSubmit(data);
-//                 }
-//             });
-//     useEffect(() => {
-//     return () => {
-//       unsub();
-//     };
-//   }, []);
-// }
-
-  
-//     render() {
-//       return (
-//         <form onSubmit={this.handleSubmit}>
-//           {/* form inputs */}
-//           <button type="submit">Submit</button>
-//         </form>
-//       );
-//     }
-//   }
-
-
-
-// export default function SearchBar() {
-//     console.log("loaded SearchBar");
-    
-//     const [searchTerm, setSearchTerm] = useState('');
-//     const [searchResults, setSearchResults] = useState([]);
-//     const [showResults, setShowResults] = useState(false);
-
-
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     setSearchTerm(event.target.searchInput.value);
-
-//     const q = query(collection(db,'redox'), where('pdbID', '==', searchTerm));
-//     console.log(q);
-//     const unsub = onSnapshot(q,(querySnapshot) => {
-//             console.log("Data", querySnapshot.docs.map(doc=>doc.data()));
-//             if (querySnapshot.empty){
-//                 console.log('Error getting document');
-//             }
-//             else{
-//                 setSearchResults(querySnapshot.docs.map(doc => doc.data()));
-//                 setShowResults(true);
-//                 console.log(showResults);
-//             }
-//         });
-//     // make API call to retrieve search results using searchTerm
-//   } 
-
-//   return (
-//     <div className="App-form">
-//           <form onSubmit={handleSubmit}>
-//             <label htmlFor="search-input"></label>
-//             <input type="text" id="search-input" name="searchInput"/>
-//             <button type="submit">Search</button>
-//           </form> 
-//     </div>
-//   );
-//   }
+}

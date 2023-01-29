@@ -34,6 +34,7 @@
     "recompose": "^0.30.0",
     "redux": "^4.2.0",
     "redux-firestore": "^1.0.0",
+    "redux-toolkit": "^1.1.2",
     "thunk": "^0.0.1",
     "web-vitals": "^2.1.4",
     "webpack": "^5.75.0"
