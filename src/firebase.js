@@ -6,6 +6,7 @@ import { initializeApp } from 'firebase/compat/app';
 import { getFirestore } from 'firebase/compat/firestore'
 =======
 import { initializeApp } from 'firebase/app';
+<<<<<<< HEAD
 import { getFirestore } from 'firebase/firestore'
 >>>>>>> parent of 2bb2814 (update using redux-react-firebase)
 import React from 'react'
@@ -25,6 +26,9 @@ import { createFirestoreInstance, firestoreReducer } from 'redux-firestore' // <
 
 =======
 import { initializeApp } from 'firebase/app';
+import { getFirestore, collection } from 'firebase/firestore'
+>>>>>>> parent of dd10870 (a functional website)
+=======
 import { getFirestore, collection } from 'firebase/firestore'
 >>>>>>> parent of dd10870 (a functional website)
 

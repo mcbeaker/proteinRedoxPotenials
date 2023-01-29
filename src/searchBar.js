@@ -19,6 +19,7 @@ export default function SearchBar() {
   };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // const q = query(collection(db, 'redox'),where('pdbID', '==', inputValue));
         const q = query(collection(db, 'redox'));
         // const qu = await getDocs(q) //..get();
@@ -46,6 +47,9 @@ export default function SearchBar() {
   }, [unsub]);
 
     return (
+=======
+  return (
+>>>>>>> parent of dd10870 (a functional website)
 =======
   return (
 >>>>>>> parent of dd10870 (a functional website)

@@ -6,6 +6,7 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { ThemeProvider, createTheme } from '@mui/material';
 import returnResults from './pullFirestoreData';
 
@@ -44,6 +45,33 @@ export default function ResultsTable() {
           );
     }
    
+=======
+
+
+export default function ResultsTable({ searchResults }) {
+  return (
+    <MaterialTable
+  columns={[ 
+    { title: 'Enzyme_Name', field: 'enzyme_name' },
+    { title: 'Cofactor', field: 'cofactor' },
+    { title: 'Cofactor_type', field: 'cofactor_type' },
+    { title: 'Redox(mv)', field: 'redox_mv' },
+    { title: 'PDBID', field: 'pdbID' },
+    { title: 'UniprotID', field: 'uniprot_id' }
+  ]}
+  data={searchResults}
+  options={{
+    filtering: true,
+    sorting: true,
+    paginationType: 'stepped',
+  }}
+  />
+  );
+}
+
+
+
+>>>>>>> parent of dd10870 (a functional website)
 =======
 
 

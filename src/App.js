@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // import React from 'react';
 =======
 import React from 'react';
@@ -55,6 +56,8 @@ export default function App() {
 }
 
 =======
+=======
+>>>>>>> parent of dd10870 (a functional website)
 import logo from './logo.svg';
 import './App.css';
 // import * as firebase from 'firebase/app';
@@ -63,6 +66,7 @@ import Logo from './logo';
 import SearchBar from './searchBar';
 import ResultsTable from './resultTable';
       
+<<<<<<< HEAD
 
 function App(){
  
@@ -161,9 +165,23 @@ class App extends React.Component {
       </div>
     );
   
+=======
+
+function App(){
+ 
+
+  return (
+    <div className="App">
+      <Logo src="logo.svg" alt="ProtRedox logo"/>
+      <SearchBar />
+      <ResultsTable />
+    </div>
+
+  );
+>>>>>>> parent of dd10870 (a functional website)
 }
 
-}
+
 export default App;
 
 
