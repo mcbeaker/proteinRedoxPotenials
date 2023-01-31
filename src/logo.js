@@ -1,12 +1,9 @@
 import React from 'react';
-
-const Logo = ({ src, alt }) => {
+import logo from './logo.svg'
+const Logo = () => {
+  console.log("Logo");
   return (
-    <header className='App-header'>
-        <a href='index.html'>
-          <img src={src} alt={alt} />
-        </a>
-    </header>
+          <img src={logo} alt="Logo" />
   );
 }
 

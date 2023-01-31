@@ -27,6 +27,7 @@
     "react-redux-firebase": "^3.11.0",
     "react-router-dom": "^6.8.0",
     "react-scripts": "5.0.1",
+    "react-scroll": "^1.8.9",
     "react-table": "^7.8.0",
     "redux": "^4.2.0",
     "redux-firestore": "^1.0.0",
@@ -36,7 +37,7 @@
     "webpack": "^5.75.0"
   },
   "scripts": {
-    "start": "GENERATE_SOURCEMAP=false react-scripts start",
+    "start": "react-scripts start",
     "_start": "firebase deploy",
     "build": "react-scripts build",
     "test": "react-scripts test",
