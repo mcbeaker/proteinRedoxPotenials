@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import db from './firebase';
+import db from './fbConfig';
 import { collection, doc, onSnapshot, query, where, getDocs} from 'firebase/firestore';
 import { render } from '@testing-library/react';
 
