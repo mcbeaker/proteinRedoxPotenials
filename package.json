@@ -29,7 +29,16 @@
     "react-scripts": "5.0.1",
     "react-table": "^7.8.0",
     "redux": "^4.2.0",
+<<<<<<< HEAD
     "redux-firestore": "^1.0.0",
+=======
+<<<<<<< HEAD
+    "redux-firestore": "^1.0.0",
+    "redux-toolkit": "^1.1.2",
+    "thunk": "^0.0.1",
+=======
+>>>>>>> parent of 2bb2814 (update using redux-react-firebase)
+>>>>>>> ae3702baab658acaec33424b89249ffb673ffd65
     "web-vitals": "^2.1.4",
     "webpack": "^5.75.0"
   },
