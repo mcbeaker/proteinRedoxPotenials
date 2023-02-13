@@ -1,0 +1,14 @@
+[debug] [2023-01-31T21:17:13.499Z] ----------------------------------------------------------------------
+[debug] [2023-01-31T21:17:13.507Z] Command:       /Users/KMcGuinness/homebrew/Cellar/node/19.2.0/bin/node /Users/KMcGuinness/homebrew/bin/firebase deploy
+[debug] [2023-01-31T21:17:13.507Z] CLI Version:   11.21.0
+[debug] [2023-01-31T21:17:13.507Z] Platform:      darwin
+[debug] [2023-01-31T21:17:13.507Z] Node Version:  v19.2.0
+[debug] [2023-01-31T21:17:13.507Z] Time:          Tue Jan 31 2023 16:17:13 GMT-0500 (Eastern Standard Time)
+[debug] [2023-01-31T21:17:13.508Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-31T21:17:13.540Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-31T21:17:13.540Z] > authorizing via signed-in user (kenneth.mcguinness@gmail.com)
+[debug] [2023-01-31T21:17:13.540Z] [iam] checking project protein-redox-potential for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-01-31T21:17:13.542Z] > refreshing access token with scopes: []
+[debug] [2023-01-31T21:17:13.543Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-31T21:17:13.543Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]

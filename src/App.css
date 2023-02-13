@@ -44,7 +44,7 @@
 }
 .nav {
   background-color: var(--off-white);
-  position: sticky;
+  position: relative;
   top: 0px;
   width: 100%;
   height: 110px;
@@ -98,16 +98,44 @@
   padding: 0px;
   display: grid;
 }
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
-/* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-} */
+
+.section .section-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0px;
+  display: grid;
+}
+#section-form {
+  font-size: 1em;
+   outline: none;
+   padding: 0.5em;
+   border-radius:10px;
+   display:list-item;    /* Add this property*/
+   max-width: 100px;
+   /* width: 100px; */
+   position: center;
+   margin:10px 0; 
+   max-width: 400px; 
+  /* grid-gap: 20px;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: 10em 1em 1em 1em; */
+}
+
+.bg-img {
+  /* The image used */
+  /* background-image: url("./computerForm.svg"); */
+  background-image: url("./notepad.svg");
+
+  /* Control the height of the image */
+  min-height: 400px; 
+  max-height: 800px;
+  min-width: 500px;
+  max-width: 600px ;
+  /* Center and scale the image nicely */
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  position: center;
+}
+
+/* .submitbutton {display:block;   position: bottom; } */

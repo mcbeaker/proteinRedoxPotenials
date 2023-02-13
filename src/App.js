@@ -5,12 +5,13 @@ import Logo from './logo';
 // import tableRedox from './redox/tableRedox';
 import Navbar from "./Components/Navbar";
 import Section from "./Components/Section";
+import Form from './form';
 
 function App() {
   return (
     <div className="App"> 
     <Navbar />
-    <div>
+    <div className='section-content'>
     <Section
       title="Table"
       Component={TableRedox}
@@ -18,6 +19,25 @@ function App() {
       id="Table"
     />
     </div>
+    {/* <div className='section-form'> */}
+    
+    <h1> Contribute to ProtReDox </h1>  
+    <p>
+       Please enter experimental details and press submit <br></br>
+       to contribute to ProtReDox. Submissions will be <br></br> reviewed and appropriately handled. <br></br>
+      Thank you, <br></br> The ProtReDox Team
+    </p>
+
+    <div id='section-form'>
+    <Section
+      title="Form"
+      Component={Form}
+      dark={false}
+      id="Form"
+    />
+    </div>
+
+
     {/* </div> */}
     </div>
     /*<Section

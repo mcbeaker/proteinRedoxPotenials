@@ -1,0 +1,289 @@
+diff --git a/node_modules/cipher-base/index.js b/node_modules/cipher-base/index.js
+index 6728005..2777f5a 100644
+--- a/node_modules/cipher-base/index.js
++++ b/node_modules/cipher-base/index.js
+@@ -1,99 +1,101 @@
+-var Buffer = require('safe-buffer').Buffer
+-var Transform = require('stream').Transform
+-var StringDecoder = require('string_decoder').StringDecoder
+-var inherits = require('inherits')
+-
+-function CipherBase (hashMode) {
+-  Transform.call(this)
+-  this.hashMode = typeof hashMode === 'string'
+-  if (this.hashMode) {
+-    this[hashMode] = this._finalOrDigest
+-  } else {
+-    this.final = this._finalOrDigest
+-  }
+-  if (this._final) {
+-    this.__final = this._final
+-    this._final = null
+-  }
+-  this._decoder = null
+-  this._encoding = null
+-}
+-inherits(CipherBase, Transform)
++import { Transform, StringDecoder } from 'stream';
++const { Buffer } = require('buffer');
++
++import { Transform } from 'readable-stream';
++import { StringDecoder } from 'string_decoder';
++import { constants } from 'os';
+ 
+-CipherBase.prototype.update = function (data, inputEnc, outputEnc) {
+-  if (typeof data === 'string') {
+-    data = Buffer.from(data, inputEnc)
++class CipherBase extends Transform {
++  constructor(hashMode) {
++    super();
++    this.hashMode = typeof hashMode === 'string';
++    if (this.hashMode) {
++      this[hashMode] = this._finalOrDigest;
++    } else {
++      this.final = this._finalOrDigest;
++    }
++    this._decoder = null;
++    this._encoding = null;
+   }
+ 
+-  var outData = this._update(data)
+-  if (this.hashMode) return this
++  update(data, inputEnc, outputEnc) {
++    if (typeof data === 'string') {
++      data = Buffer.from(data, inputEnc);
++    }
++
++    let outData = this._update(data);
++    if (this.hashMode) return this;
++
++    if (outputEnc) {
++      outData = this._toString(outData, outputEnc);
++    }
+ 
+-  if (outputEnc) {
+-    outData = this._toString(outData, outputEnc)
++    return outData;
+   }
+ 
+-  return outData
+-}
++  setAutoPadding() {}
+ 
+-CipherBase.prototype.setAutoPadding = function () {}
+-CipherBase.prototype.getAuthTag = function () {
+-  throw new Error('trying to get auth tag in unsupported state')
+-}
++  getAuthTag() {
++    throw new Error('trying to get auth tag in unsupported state');
++  }
+ 
+-CipherBase.prototype.setAuthTag = function () {
+-  throw new Error('trying to set auth tag in unsupported state')
+-}
++  setAuthTag() {
++    throw new Error('trying to set auth tag in unsupported state');
++  }
+ 
+-CipherBase.prototype.setAAD = function () {
+-  throw new Error('trying to set aad in unsupported state')
+-}
++  setAAD() {
++    throw new Error('trying to set aad in unsupported state');
++  }
+ 
+-CipherBase.prototype._transform = function (data, _, next) {
+-  var err
+-  try {
+-    if (this.hashMode) {
+-      this._update(data)
+-    } else {
+-      this.push(this._update(data))
++  _transform(data, _, next) {
++    let err;
++    try {
++      if (this.hashMode) {
++        this._update(data);
++      } else {
++        this.push(this._update(data));
++      }
++    } catch (e) {
++      err = e;
++    } finally {
++      next(err);
+     }
+-  } catch (e) {
+-    err = e
+-  } finally {
+-    next(err)
+-  }
+-}
+-CipherBase.prototype._flush = function (done) {
+-  var err
+-  try {
+-    this.push(this.__final())
+-  } catch (e) {
+-    err = e
+   }
+ 
+-  done(err)
+-}
+-CipherBase.prototype._finalOrDigest = function (outputEnc) {
+-  var outData = this.__final() || Buffer.alloc(0)
+-  if (outputEnc) {
+-    outData = this._toString(outData, outputEnc, true)
++  _flush(done) {
++    let err;
++    try {
++      this.push(this.__final());
++    } catch (e) {
++      err = e;
++    }
++
++    done(err);
+   }
+-  return outData
+-}
+ 
+-CipherBase.prototype._toString = function (value, enc, fin) {
+-  if (!this._decoder) {
+-    this._decoder = new StringDecoder(enc)
+-    this._encoding = enc
++  _finalOrDigest(outputEnc) {
++    let outData = this.__final() || Buffer.alloc(0);
++    if (outputEnc) {
++      outData = this._toString(outData, outputEnc, true);
++    }
++    return outData;
+   }
+ 
+-  if (this._encoding !== enc) throw new Error('can\'t switch encodings')
++  _toString(value, enc, fin) {
++    if (!this._decoder) {
++      this._decoder = new StringDecoder(enc);
++      this._encoding = enc;
++    }
++
++    if (this._encoding !== enc) throw new Error("can't switch encodings");
+ 
+-  var out = this._decoder.write(value)
+-  if (fin) {
+-    out += this._decoder.end()
+-  }
++    let out = this._decoder.write(value);
++    if (fin) {
++      out += this._decoder.end();
++    }
+ 
+-  return out
++    return out;
++  }
+ }
+ 
+-module.exports = CipherBase
++export default CipherBase;
+diff --git a/node_modules/cipher-base/old_index.js b/node_modules/cipher-base/old_index.js
+new file mode 100644
+index 0000000..7c619d6
+--- /dev/null
++++ b/node_modules/cipher-base/old_index.js
+@@ -0,0 +1,99 @@
++import { Buffer } from 'buffer';
++import { Transform } from 'readable-stream';
++import { StringDecoder } from 'string_decoder';
++
++class CipherBase extends Transform {
++  constructor(hashMode) {
++    super();
++    this.hashMode = typeof hashMode === 'string';
++    if (this.hashMode) {
++      this[hashMode] = this._finalOrDigest;
++    } else {
++      this.final = this._finalOrDigest;
++    }
++    this._decoder = null;
++    this._encoding = null;
++  }
++
++  update(data, inputEnc, outputEnc) {
++    if (typeof data === 'string') {
++      data = Buffer.from(data, inputEnc);
++    }
++
++    let outData = this._update(data);
++    if (this.hashMode) return this;
++
++    if (outputEnc) {
++      outData = this._toString(outData, outputEnc);
++    }
++
++    return outData;
++  }
++
++  setAutoPadding() {}
++
++  getAuthTag() {
++    throw new Error('trying to get auth tag in unsupported state');
++  }
++
++  setAuthTag() {
++    throw new Error('trying to set auth tag in unsupported state');
++  }
++
++  setAAD() {
++    throw new Error('trying to set aad in unsupported state');
++  }
++
++  _transform(data, _, next) {
++    let err;
++    try {
++      if (this.hashMode) {
++        this._update(data);
++      } else {
++        this.push(this._update(data));
++      }
++    } catch (e) {
++      err = e;
++    } finally {
++      next(err);
++    }
++  }
++
++  _flush(done) {
++    let err;
++    try {
++      this.push(this.__final());
++    } catch (e) {
++      err = e;
++    }
++
++    done(err);
++  }
++
++  _finalOrDigest(outputEnc) {
++    let outData = this.__final() || Buffer.alloc(0);
++    if (outputEnc) {
++      outData = this._toString(outData, outputEnc, true);
++    }
++    return outData;
++  }
++
++  _toString(value, enc, fin) {
++    if (!this._decoder) {
++      this._decoder = new StringDecoder(enc);
++      this._encoding = enc;
++    }
++
++    if (this._encoding !== enc) throw new Error("can't switch encodings");
++
++    let out = this._decoder.write(value);
++    if (fin) {
++      out += this._decoder.end();
++    }
++
++    return out;
++  }
++}
++
++export default CipherBase;
++

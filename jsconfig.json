@@ -5,7 +5,8 @@
         "target": "ES2020",
         "jsx": "react",
         "strictNullChecks": true,
-        "strictFunctionTypes": true
+        "strictFunctionTypes": true,
+        "paths": {"stream": ["./node_modules/readable-stream"]}
     },
     "exclude": [
         "node_modules",
