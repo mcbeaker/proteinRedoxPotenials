@@ -1,15 +1,13 @@
 import { Dispatch, SetStateAction, useMemo, useState } from "react";
 
-export function usePrettyPrintedState<T extends object>(
-  label: string
-): [JSX.Element, Dispatch<SetStateAction<T>>] {
-  const [value, setValue] = useState<T>();
+const usePrettyPrintedState = function (label) {
+  const [value, setValue] = useState(null);
   const resultValue = useMemo(() => {
     return (
       <>
         {value && (
           <pre>
-            {label ?? "Value"}:
+            {label || "Value"}:
             <br />
             {JSON.stringify(value, null, 2)}
           </pre>
@@ -18,4 +16,6 @@ export function usePrettyPrintedState<T extends object>(
     );
   }, [label, value]);
   return [resultValue, setValue];
-}
+};
+
+export default usePrettyPrintedState;

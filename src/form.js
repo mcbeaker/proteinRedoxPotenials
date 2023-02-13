@@ -1,7 +1,8 @@
 import { Block } from '@material-ui/icons';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { usePrettyPrintedState } from "./usePrettyPrintedState.tsx";
+import usePrettyPrintedState from './usePrettyPrintedState';
+// import { usePrettyPrintedState } from "./usePrettyPrintedState.tsx";
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 
 export default function Form() {
@@ -28,16 +29,20 @@ const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
 const appendSpreadsheet = async (row) => {
   try {
     const creds = require('./protein-redox-potential-ae6bfd2d4fe4.json')
-    creds.private_key = creds.private_key.replace(/(\r\n|\n|\r)/gm, '')
-    console.log('creds: ', creds)
-    await doc.useServiceAccountAuth(creds);
+    // const key = creds.private_key.replace(/(\r\n|\n|\r)/gm, '')
+    // console.log('creds: ', key)
+    // await doc.useServiceAccountAuth(creds.client_email,key); //'ae6bfd2d4fe4a5f1c0258a8562b274389285b24d');
+    await doc.useServiceAccountAuth(creds); //'ae6bfd2d4fe4a5f1c0258a8562b274389285b24d');
     // loads document properties and worksheets
     console.log('this is row:', row);
 
     await doc.loadInfo();
-    const sheet = doc.sheetsById[SHEET_ID];
+    const sheet = doc.sheetsByTitle['redox'];
+    console.log(sheet);
+    console.log(sheet.title);
+    console.log(sheet.rowCount);
 
-    // const result = await sheet.addRow(row);
+    const result = await sheet.addRow(row);
   } catch (e) {
     console.error('Error blah: ', e);
   }
@@ -53,66 +58,81 @@ appendSpreadsheet(data);
     <div class="bg-img">
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* <label for="firstName" class="first-name">ProteinName</label> */}
-        {/* <div>
-          <input type="text" placeholder="Protein" {...register("Protein", {required: true, maxLength: 80})} />
-        </div> */}
-
-        {/* <label for="firstName" class="first-name">Cofactor</label>
         <div>
-          <input type="text" placeholder="Cofactor" {...register("Cofactor", {required: true, maxLength: 100})} />
-        </div> */}
+          <input type="text" placeholder="Protein" {...register("enzyme_name", {required: true, maxLength: 80})} />
+        </div>
+        {/* doi	uniprot_id	organism	temp_K	pH	method	buffer	EC	Mutant	notes	reviewed														 */}
+        {/* <label for="firstName" class="first-name">Cofactor</label> */}
+        <div>
+          <input type="text" placeholder="Cofactor" {...register("cofactor", {required: true, maxLength: 100})} />
+        </div>
 
         {/* <label for="firstName" class="first-name">CofactorType</label> */}
-        {/* <div>
-          <input type="text" placeholder="CofactorType" {...register("CofactorType", {required: true})} />
-        </div> */}
+        <div>
+          <input type="text" placeholder="CofactorType" {...register("cofactor_type", {required: true})} />
+        </div>
         {/* <label for="firstName" class="first-name">Redox (mv)</label> */}
-        {/* <div>
-          <input type="number" placeholder='Redox (mv)'{...register("Redox(mv)", {required: true, maxLength: 12})} />
-        </div>  */}
+        <div>
+          <input type="number" placeholder='Redox (mv)'{...register("redox_mv", {required: true, maxLength: 12})} />
+        </div> 
         {/* <label for="firstName" class="first-name">pdbID</label> */}
-        {/* <div>
-          <input type="text" placeholder='pdbID' {...register("pdbId", {})} />
-        </div> */}
+        <div>
+          <input type="text" placeholder='pdbID' {...register("pdb", {})} />
+        </div>
         {/* <label for="firstName" class="first-name">doiUrl</label> */}
-        {/* <div>
-          <input type="url" placeholder="https://www.doi.org/" {...register("doiUrl", {required: true})} />
-        </div>  */}
+        <div>
+          <input type="url" placeholder="https://www.doi.org/" {...register("doi", {required: true})} />
+        </div> 
+
+        <div>
+          <input type="text" placeholder="UniprotID" {...register("uniprot_id")} />
+        </div>
+
+        <div>
+          <input type="text" placeholder="Enzyme Class" {...register("EC")} />
+        </div>
+
+        <div>
+          <input type="text" placeholder="Organism" {...register("organism", {})} />
+        </div> 
+
         {/* <label for="firstName" class="first-name">Buffer</label> */}
-        {/* <div>
-          <input type="text" placeholder="Buffer" {...register("experimental buffer", {})} />
-        </div> */}
+        <div>
+          <input type="text" placeholder="Buffer" {...register("buffer", {})} />
+        </div>
         {/* <label for="firstName" class="first-name">Method</label> */}
-        {/* <div>
-          <input type="text" placeholder="Method" {...register("experimental method", {})} />
-        </div> */}
+        <div>
+          <input type="text" placeholder="Method" {...register("method", {})} />
+        </div>
         
         {/* <label for="firstName" class="first-name">pH</label> */}
         <div> 
-          <input type="number" placeholder="pH" {...register("experimental pH", {})} />
+          <input type="number" placeholder="pH" {...register("pH", {})} />
         </div>
         
         {/* <label for="firstName" class="first-name">Notes</label> */}
-        {/* <div> 
+        <div> 
           <input type="text" placeholder="Notes" {...register("notes", {})} />
-        </div> */}
+        </div>
         
         
         {/* <label for="firstName" class="first-name">T</label> */}
-        {/* <div>
-        <input type="number" placeholder="Temperature (K)" {...register("experimental temperature (K)", {})} />
-        </div> */}
+        <div>
+        <input type="number" placeholder="Temperature (K)" {...register("temp_K", {})} />
+        </div>
 
-        {/* <div> 
-          <input type="email" placeholder="email@domain.com" {...register("email@domain.com", {})} />
-        </div> */}
+        <div> 
+          <input type="email" placeholder="email@domain.com" {...register("email", {})} />
+        </div>
 
-        {/* <div>
+        <div>
           <label for="Reviewed" class="first-name">Reviewed</label>
-        </div> */}
-        {/* <div> 
+        </div>
+        
+        <div> 
           <input type="text" value="no" {...register("reviewed", {})} readOnly/>
-        </div> */}
+        </div>
+        
         <div> 
           <input type="submit" />
         </div>
