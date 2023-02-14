@@ -2,6 +2,8 @@ import { Block } from '@material-ui/icons';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import usePrettyPrintedState from './usePrettyPrintedState';
+import { toast } from 'react-toastify';
+
 // import { usePrettyPrintedState } from "./usePrettyPrintedState.tsx";
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 
@@ -15,8 +17,14 @@ export default function Form() {
     formState: { errors }
   } = useForm();
   const onSubmit = (data, e) => {
-    e.target.reset(); // reset after form submit
     setSubmitValue(data);
+    if (data.email){
+      toast("Your data has been submitted and will be reviewed");
+      e.tartget.reset();
+      e.target.reset(); // reset after form submit
+    }
+    
+
 
 // Config variables
 const SPREADSHEET_ID = "1r4j_d6KWVMxUueOWjl4sC3qm3fxgrv-rhLY8lvSOkFc";
@@ -122,7 +130,7 @@ appendSpreadsheet(data);
         </div>
 
         <div> 
-          <input type="email" placeholder="email@domain.com" {...register("email", {})} />
+          <input type="email" placeholder="email@domain.com" {...register("email", {required: true})} />
         </div>
 
         <div>

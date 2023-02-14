@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import TableRedox from '../redox/tableRedox';
+import TableRedox from '../../src/redox/tableRedox';
 
 class Dashboard extends Component{
     render(){
